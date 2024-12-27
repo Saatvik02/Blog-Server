@@ -2,7 +2,7 @@ const Blog = require('../models/blog');
 
 exports.addBlog = async(req, res) => {
   try {
-    const blog = Blog.findOne({id: req.body.id});
+    const blog = await Blog.findOne({id: req.body.id});
     if(blog){
       const response = await Blog.updateOne(
         {id: req.body.id},
@@ -30,13 +30,12 @@ exports.addBlog = async(req, res) => {
   }
 }
 
-exports.getBlog = async(req, res) => {
+exports.getBlogs = async(req, res) => {
   try {
-    const blog = await Blog.findOne({id: req.body.id});
-    if(blog){
+    const blogs = await Blog.find();
+    if(blogs){
       return res.status(200).json({
-        message:"Blog found",
-        blog: blog
+        blogs: blogs
       });
     }
     else{

@@ -7,7 +7,7 @@ router.get('/hello',(req,res) => {
 })
 
 router.post('/add-blog', blogController.addBlog)
-router.get('/get-blog', blogController.getBlog)
+router.get('/get-blogs', blogController.getBlogs)
 router.post('/delete-blog', blogController.deleteBlog)
 
 module.exports = router;
