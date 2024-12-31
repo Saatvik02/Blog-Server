@@ -3,15 +3,14 @@ kind: Ingress
 metadata:
   name: blog-ingress
   annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  ingressClassName: nginx  # Explicitly specify the ingress class
+  ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /api
+            pathType: Prefix
             backend:
               service:
                 name: backend-service
